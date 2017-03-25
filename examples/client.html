@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dependency Injection example.</title>
+    <script type="application/javascript" src="../dist/injector.js"></script>
+    <script type="application/javascript">
+
+        var Injector = injector.default;
+
+        var A = function() {
+            this.nameA = "A";
+        };
+        A.prototype.dependencies = [];
+
+        var B = function(dependencies) {
+            this.nameB = "B";
+            Object.assign(this, dependencies);
+        };
+        B.prototype.dependencies = ["a"];
+
+        var injector = new Injector();
+        injector.register('a', A);
+        injector.register('b', B);
+        var b = injector.resolve('b');
+
+        console.log(b);
+
+    </script>
+</head>
+<body></body>
+</html>
