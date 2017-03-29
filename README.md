@@ -94,4 +94,64 @@ Same object resolved.
 
 ```
 
+### Dependency injection
+
+Now it's time to demonstrate dependency injection.
+
+```js
+import Injector from "@alexey.kornilov/injector";
+
+class Foo {
+    constructor() {
+        console.log("Creating instance of Foo.");
+    }
+    
+    get dependencies() {
+        return [];
+    }
+}
+
+class Bar {
+    constructor(dependencies) {
+        console.log("Creating instance of Bar.");
+        Object.assign(this, dependencies);
+    }
+    
+    get dependencies() {
+        return [
+            "foo"
+        ];
+    }
+}
+
+const injector = new Injector();
+injector.register("foo", Foo);
+injector.register("bar", Bar);
+
+// Resolve class by its registered name
+const bar1 = injector.resolve("bar");
+
+// Bar contains injected foo
+console.log(bar1);
+
+// Resolve class by its constructor reference
+const bar2 = injector.resolve(Bar);
+
+// Bar contains injected foo
+console.log(bar2);
+```
+
+Expected output will be:
+
+```
+[Wed Mar 29 2017 15:27:08 GMT+0300 (MSK)] [Injector] Registering 'foo' component.
+[Wed Mar 29 2017 15:27:08 GMT+0300 (MSK)] [Injector] Registering 'bar' component.
+Creating instance of Foo.
+Creating instance of Bar.
+Bar { foo: Foo {} }
+Creating instance of Foo.
+Creating instance of Bar.
+Bar { foo: Foo {} }
+```
+
 Also usage examples can be found in `./examples` folder.
