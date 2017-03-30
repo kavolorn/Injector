@@ -5,6 +5,14 @@
 This is dependency injector for JavaScript with support for ES6/ES2015. It can 
 be applied in both node and browser environments.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+	- [Constructor Registration](#constructor-registration)
+	- [Object Registration](#object-registration)
+	- [Dependency Injection](#dependency-injection)
+
 ## Installation
 
 Execute this command in your environment. 
@@ -20,7 +28,7 @@ yarn add @alexey.kornilov/injector
 
 ## Usage
 
-### Constructor registration
+### Constructor Registration
 
 One is able to register constructor for a particular class and create
 instances of it:
@@ -56,7 +64,7 @@ Creating instance of Foo.
 Creating instance of Foo.
 ```
 
-### Object registration
+### Object Registration
 
 One is able to register pure object.
 
@@ -94,7 +102,7 @@ Same object resolved.
 
 ```
 
-### Dependency injection
+### Dependency Injection
 
 Now it's time to demonstrate dependency injection.
 
