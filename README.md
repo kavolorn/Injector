@@ -26,6 +26,8 @@ or
 yarn add @alexey.kornilov/injector
 ```
 
+<small>[Table of Contents](#table-of-contents)</small>
+
 ## Usage
 
 ### Constructor Registration
@@ -64,6 +66,8 @@ Creating instance of Foo.
 Creating instance of Foo.
 ```
 
+<small>[Table of Contents](#table-of-contents)</small>
+
 ### Object Registration
 
 One is able to register pure object.
@@ -101,6 +105,8 @@ Expected output will be:
 Same object resolved.
 
 ```
+
+<small>[Table of Contents](#table-of-contents)</small>
 
 ### Dependency Injection
 
@@ -163,3 +169,5 @@ Bar { foo: Foo {} }
 ```
 
 Also usage examples can be found in `./examples` folder.
+
+<small>[Table of Contents](#table-of-contents)</small>
