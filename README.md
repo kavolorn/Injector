@@ -1,6 +1,7 @@
 # Injector
 
 [![npm version](https://img.shields.io/npm/v/@alexey.kornilov/injector.svg?style=flat-square)](https://www.npmjs.com/package/@alexey.kornilov/injector)
+[![license](https://img.shields.io/badge/licence-MIT-green.svg?style=flat-square)](https://github.com/kavolorn/Injector/blob/develop/LICENSE)
 
 This is dependency injector for JavaScript with support for ES6/ES2015. It can 
 be applied in both node and browser environments.
