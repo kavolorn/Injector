@@ -93,7 +93,7 @@ var Injector = function Injector() {
 
     this.disableOutput = disableOutput;
     this.components = {
-        'injector': this
+        injector: this
     };
 };
 
@@ -104,7 +104,7 @@ var Injector = function Injector() {
  */
 Injector.prototype.register = function (name, constructor) {
     if (!this.disableOutput) {
-        console.log('[' + new Date() + ']', '[Injector]', 'Registering \'' + name + '\' component.');
+        console.log("[" + new Date() + "]", "[Injector]", "Registering '" + name + "' component.");
     }
     this.components[name] = constructor;
 };
@@ -118,14 +118,14 @@ Injector.prototype.register = function (name, constructor) {
 Injector.prototype.registerService = function (name, constructor, params) {
     var service = this.resolve(constructor, params);
     if (!this.disableOutput) {
-        console.log('[' + new Date() + ']', '[Injector]', 'Registering \'' + name + '\' service.');
+        console.log("[" + new Date() + "]", "[Injector]", "Registering '" + name + "' service.");
     }
     this.components[name] = service;
 };
 Injector.prototype.registerUtility = function (name, constructor, params) {
     var service = this.resolve(constructor, params);
     if (!this.disableOutput) {
-        console.log('[' + new Date() + ']', '[Injector]', 'Registering \'' + name + '\' utility.');
+        console.log("[" + new Date() + "]", "[Injector]", "Registering '" + name + "' utility.");
     }
     this.components[name] = service;
 };
@@ -139,31 +139,31 @@ Injector.prototype.resolve = function (constructor, params) {
     var _this = this;
 
     // If constructor is an object returning it
-    if ((typeof constructor === 'undefined' ? 'undefined' : _typeof(constructor)) === 'object') {
+    if ((typeof constructor === "undefined" ? "undefined" : _typeof(constructor)) === "object") {
         return constructor;
     }
     // If constructor is an string returning registered component
-    if (typeof constructor === 'string') {
+    if (typeof constructor === "string") {
         if (this.components[constructor] === undefined) {
-            throw 'Cannot resolve \'' + constructor + '\' dependency.';
+            throw "Cannot resolve '" + constructor + "' dependency.";
         }
         return this.resolve(this.components[constructor]);
     }
     // If constructor is a function resolving it
-    if (typeof constructor === 'function') {
+    if (typeof constructor === "function") {
         if (!constructor.prototype.dependencies) {
-            throw 'Define dependencies for one of registered classes.';
+            throw "Define dependencies for one of registered classes.";
         }
         var dependencies = {};
         constructor.prototype.dependencies.forEach(function (dependency) {
             if (_this.components[dependency] === undefined) {
-                throw 'Cannot resolve \'' + dependency + '\' dependency.';
+                throw "Cannot resolve '" + dependency + "' dependency.";
             }
             dependencies[dependency] = _this.resolve(_this.components[dependency]);
         });
         return new constructor(dependencies, params);
     }
-    throw 'Cannot resolve dependency.';
+    throw "Cannot resolve dependency.";
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Injector);
