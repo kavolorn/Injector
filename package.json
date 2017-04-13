@@ -1,6 +1,6 @@
 {
     "name": "@alexey.kornilov/injector",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Dependency Injector for JavaScript projects.",
     "main": "dist/injector.js",
     "repository": "https://github.com/kavolorn/Injector",
