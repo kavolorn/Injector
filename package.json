@@ -1,6 +1,6 @@
 {
     "name": "@alexey.kornilov/injector",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Dependency Injector for JavaScript projects.",
     "main": "dist/injector.js",
     "repository": "https://github.com/kavolorn/Injector",
@@ -10,6 +10,8 @@
         "babel-core": "^6.24.0",
         "babel-loader": "^6.4.1",
         "babel-preset-env": "^1.2.2",
+        "eslint": "^3.15.0",
+        "eslint-loader": "^1.7.0",
         "mocha": "^3.2.0",
         "webpack": "^2.3.1"
     },

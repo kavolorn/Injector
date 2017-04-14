@@ -5,7 +5,7 @@
 const Injector = function (disableOutput = false) {
     this.disableOutput = disableOutput;
     this.components = {
-        'injector': this
+        injector: this,
     };
 };
 
@@ -18,8 +18,8 @@ Injector.prototype.register = function (name, constructor) {
     if (!this.disableOutput) {
         console.log(
             `[${new Date()}]`,
-            '[Injector]',
-            `Registering '${name}' component.`
+            `[Injector]`,
+            `Registering '${name}' component.`,
         );
     }
     this.components[name] = constructor;
@@ -32,23 +32,23 @@ Injector.prototype.register = function (name, constructor) {
  * @param params Extra parameters for constructor.
  */
 Injector.prototype.registerService = function (name, constructor, params) {
-    var service = this.resolve(constructor, params);
+    const service = this.resolve(constructor, params);
     if (!this.disableOutput) {
         console.log(
             `[${new Date()}]`,
-            '[Injector]',
-            `Registering '${name}' service.`
+            `[Injector]`,
+            `Registering '${name}' service.`,
         );
     }
     this.components[name] = service;
 };
 Injector.prototype.registerUtility = function (name, constructor, params) {
-    var service = this.resolve(constructor, params);
+    const service = this.resolve(constructor, params);
     if (!this.disableOutput) {
         console.log(
             `[${new Date()}]`,
-            '[Injector]',
-            `Registering '${name}' utility.`
+            `[Injector]`,
+            `Registering '${name}' utility.`,
         );
     }
     this.components[name] = service;
@@ -62,23 +62,23 @@ Injector.prototype.registerUtility = function (name, constructor, params) {
  */
 Injector.prototype.resolve = function (constructor, params) {
     // If constructor is an object returning it
-    if (typeof constructor === 'object') {
+    if (typeof constructor === "object") {
         return constructor;
     }
     // If constructor is an string returning registered component
-    if (typeof constructor === 'string') {
+    if (typeof constructor === "string") {
         if (this.components[constructor] === undefined) {
             throw `Cannot resolve '${constructor}' dependency.`;
         }
         return this.resolve(this.components[constructor]);
     }
     // If constructor is a function resolving it
-    if (typeof constructor === 'function') {
+    if (typeof constructor === "function") {
         if (!constructor.prototype.dependencies) {
             throw `Define dependencies for one of registered classes.`;
         }
-        var dependencies = {};
-        constructor.prototype.dependencies.forEach(dependency => {
+        const dependencies = {};
+        constructor.prototype.dependencies.forEach((dependency) => {
             if (this.components[dependency] === undefined) {
                 throw `Cannot resolve '${dependency}' dependency.`;
             }
