@@ -3,12 +3,11 @@ module.exports = {
         "shared-node-browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
     "parserOptions": {
         "sourceType": "module"
     },
     "rules": {
-        "no-console": 0,
+        "no-console": "warn",
         "indent": [
             "error",
             4
