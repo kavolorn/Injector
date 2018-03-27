@@ -73,10 +73,7 @@ Injector.prototype.resolve = function (constructor, params) {
         return this.resolve(this.components[constructor]);
     }
     // If constructor is a function resolving it
-    if (typeof constructor === "function") {
-        if (!constructor.prototype.dependencies) {
-            throw `Define dependencies for one of registered classes.`;
-        }
+    if (typeof constructor === "function" && constructor.prototype.dependencies) {
         const dependencies = {};
         constructor.prototype.dependencies.forEach((dependency) => {
             if (this.components[dependency] === undefined) {
@@ -85,6 +82,8 @@ Injector.prototype.resolve = function (constructor, params) {
             dependencies[dependency] = this.resolve(this.components[dependency]);
         });
         return new constructor(dependencies, params);
+    } else if (typeof constructor === "function") {
+      return constructor;
     }
     throw `Cannot resolve dependency.`;
 };
