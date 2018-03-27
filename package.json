@@ -1,12 +1,13 @@
 {
     "name": "@alexey.kornilov/injector",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Dependency Injector for JavaScript projects.",
     "main": "dist/injector.js",
     "repository": "https://github.com/kavolorn/Injector",
     "author": "Alexey Kornilov <alexey.kornilov@kavolorn.ru>",
     "license": "MIT",
     "devDependencies": {
+        "babel-cli": "^6.24.1",
         "babel-core": "^6.24.0",
         "babel-loader": "^6.4.1",
         "babel-preset-env": "^1.2.2",
@@ -18,6 +19,6 @@
     "scripts": {
         "build": "NODE_ENV=production webpack --progress --hide-modules",
         "watch": "NODE_ENV=development webpack --progress --hide-modules --watch",
-        "test": "mocha src/tests"
+        "test": "NODE_ENV=production babel ./tests --out-dir ./dist && mocha dist/tests"
     }
 }

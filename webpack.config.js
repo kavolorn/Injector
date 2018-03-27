@@ -21,6 +21,19 @@ module.exports = {
                 test: /\.js$/,
                 loader: "babel-loader",
                 exclude: /node_modules/,
+                options: {
+                    presets: [[
+                        "env",
+                        {
+                            targets: {
+                                browsers: [
+                                    "last 2 versions"
+                                ]
+                            },
+                            modules: false
+                        }
+                    ]]
+                }
             }
         ],
     },
@@ -29,25 +42,14 @@ module.exports = {
             "process.env": {
                 NODE_ENV: "'development'"
             }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true,
+            compress: {
+                warnings: false
+            },
+            comments: false
         })
     ],
-    devtool: "eval-source-map"
+    devtool: "source-map"
 };
-
-if (process.env.NODE_ENV === "production") {
-    module.exports.plugins = [
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: "'production'"
-            }
-        }),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     sourceMap: true,
-        //     compress: {
-        //         warnings: false
-        //     },
-        //     comments: false
-        // })
-    ];
-    module.exports.devtool = "source-map";
-}
